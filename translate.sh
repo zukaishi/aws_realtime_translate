@@ -1,1 +1,1 @@
-ls > /Users/hishizuka/Work/git/aws_realtime_translate/output.txt
+aws translate translate-text --source-language-code "en" --target-language-code "ja" --text $(printf '%s' $(cat input.txt)) > output.txt
