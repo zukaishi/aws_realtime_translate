@@ -9,3 +9,8 @@ aws translate translate-text --source-language-code "en" --target-language-code 
 - インプットファイルに入るルートは２つ
 1. ブラウザ上から入力する
 2. ブラウザ上で文字列を選択する
+
+## 定期実行開始
+launchctl load  ~/Library/LaunchAgents/translate.plist
+## 定期実行停止
+launchctl unload  ~/Library/LaunchAgents/translate.plist
