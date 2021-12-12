@@ -1,5 +1,1 @@
-Amazon Translate translates documents between languages in 
-    real time. It uses advanced machine learning technologies 
-    to provide high-quality real-time translation. Use it to 
-    translate documents or to build applications that work in 
-    multiple languages.
+ccccc
