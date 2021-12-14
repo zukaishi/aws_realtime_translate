@@ -14,21 +14,43 @@
     }; 
     request.send();
 
-    function sendGet(){
-      console.log("test")
+    function sendReload(){
+      console.log("Reload")
       var xmlHttpRequest = new XMLHttpRequest();
-      var formData = new FormData(document.forms.user);
-      xmlHttpRequest.open('GET','http://localhost:3000/input',true);
+
+      xmlHttpRequest.open('GET','http://localhost:3000/output',true);
+      xmlHttpRequest.send();
+
+      xmlHttpRequest.onload = function () {
+        const log = document.querySelector('.event-log');
+        var data = this.response;
+        console.log(data);
+        log.textContent = data;
+      };
+    }
+
+    function sendTranslate(){
+      console.log("Translate")
+      var xmlHttpRequest = new XMLHttpRequest();
+      var formData = new FormData(document.forms.Translate);
+
+      const Translate = document.getElementById('idTranslate').value;
+      console.log(Translate)
+      xmlHttpRequest.open('GET','http://localhost:3000/input?text='+ Translate,true);
       xmlHttpRequest.send(formData);
     }
   </script>
 </head>
 <body> 
-  <textarea readonly class="event-log" rows="10" cols="100"></textarea>
-  <div>
-    <form name="user">
-      <textarea name="kansou" rows="10" cols="100">cols="20"のテキストエリアです。</textarea><br>
-      <input type="submit" onclick="sendGet();return false;">
-    </div>
-</body>
+  <table>
+    <td>
+      <input type="submit"  value="Reload" onclick="sendReload();return false;">
+    <textarea readonly class="event-log" rows="35" cols="100"></textarea>
+    </td>
+    <td>
+      <input type="submit"  value="Translate" onclick="sendTranslate();return false;">
+      <textarea name="text" id="idTranslate" rows="35" cols="100"></textarea><br>
+    </td>
+  </table>
+  </body>
 </html>

@@ -1,11 +1,12 @@
 const express = require('express')
 const fs = require("fs")
+const url = require("url")
 const app = express()
 const port = 3000
 
 app.get("/", (req, res) =>{
     res.sendFile(`${__dirname}/index.html`);
-    });
+});
 
 app.get("/output", (req, res, next) => {
     var obj = JSON.parse(fs.readFileSync('./output.json', 'utf8'));
@@ -19,10 +20,16 @@ app.get("/output", (req, res, next) => {
 });
 
 app.get("/input", (req, res, next) => {
-    fs.writeFileSync( "input.txt" , "ccccc" )
+    var url_parse = url.parse(req.url, true);
+    var query = url_parse.query
+    var inputText = query.text
+    console.log(query.text)
+    fs.writeFileSync( "input.txt" , inputText )
+    
+    var loadText = fs.readFileSync('./input.txt', 'utf8');
     res.writeHead(200, {'Content-Type' : 'text/plain;charset=UTF-8'});
-    res.write('OK');
+    res.write(loadText);
     res.end();
-}); 
+});
 
 app.listen(port, () => console.log(`click http://localhost:${port}/ !`))
