@@ -1,0 +1,7 @@
+export PATH=$PATH:/Users/ishizkah/.nodebrew/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+cd /Users/ishizkah/work/aws_translate
+echo ""テスト"" > aaa.txt
+#./translate.sh
+#aws s3 ls > s3_list.txt
+#aws translate translate-text --source-language-code "en" --target-language-code "ja" --text $(printf '%s' $(cat input.txt)) > output.json
